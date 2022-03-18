@@ -12,6 +12,6 @@ namespace TabasApi.Repositories
         Employee GetEmployee(Int32 id);
         IEnumerable<Employee> GetEmployees();
         void UpdateEmployee(Employee employee);
-        Employee CheckPassword(string name, string password);
+        Employee CheckPassword(string name, string password, string job);
     }
 }

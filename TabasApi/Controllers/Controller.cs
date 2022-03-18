@@ -12,54 +12,55 @@ namespace TabasApi.Controller
     [Route("[controller]")]
     public class Controller : ControllerBase
     {
-        private readonly IEmployeesRepository repository;
+        private readonly IDataBase repository;
 
-        public Controller(IEmployeesRepository repository)
+        public Controller(IDataBase repository)
         {
             this.repository = repository;
         }
 
         [HttpGet]
         [Route("employee")]
-        public IEnumerable<EmployeeDto> GetEmployees()
+        public IEnumerable<Trabajador> GetEmployees()
         {
-            var employees = repository.GetEmployees().Select(employees => employees.AsDto());
-            return employees;
+            var trabajadores = repository.trabajadores;
+            return trabajadores;
         }
 
         [HttpGet("employee/{id}")]
-        public ActionResult<EmployeeDto> GetEmployee(Int32 id)
+        public ActionResult<Trabajador> GetEmployee(string id)
         {
-            var item = repository.GetEmployee(id);
-            if (item is null)
+            var trabajador = repository.trabajadores.Where(trabajador => trabajador.cedula == id).SingleOrDefault(); ;
+            if (trabajador is null)
             {
                 return NotFound();
             }
-            return item.AsDto();
+            return trabajador;
         }
 
         [HttpPost]
         [Route("employee/register")]
-        public ActionResult<EmployeeDto> RegisterEmployee(RegisterEmployeeDto employeeDto)
+        public ActionResult<Trabajador> RegisterEmployee(Trabajador employeeDto)
         {
-            Employee employee = new()
+            Trabajador employee = new()
             {
-                Id = employeeDto.Id,
-                Name = employeeDto.Name,
-                Password = employeeDto.Password,
-                RegisteredDate = DateTimeOffset.UtcNow,
-                Job = employeeDto.Job
+                cedula = employeeDto.cedula,
+                nombre_rol = employeeDto.nombre_rol,
+                nombre = employeeDto.nombre,
+                apellido_1 = employeeDto.apellido_1,
+                apellido_2 = employeeDto.apellido_2,
+                password = employeeDto.password
             };
 
-            repository.AddEmployee(employee);
-            return CreatedAtAction(nameof(GetEmployee), new { id = employee.Id }, employee.AsDto());
+            repository.trabajadores.Add(employee);
+            return CreatedAtAction(nameof(GetEmployee), new { id = employee.cedula }, employee);
         }
-
+        /*
         [HttpPost]
         [Route("employee/login")]
         public ActionResult LoginEmployee(LoginEmployeeDto employeeDto)
         {
-            var validEmployee = repository.CheckPassword(employeeDto.Name, employeeDto.Password);
+            var validEmployee = repository.CheckPassword(employeeDto.Name, employeeDto.Password, employeeDto.Job);
             if (validEmployee is null)
             {
                 return NotFound();
@@ -85,7 +86,7 @@ namespace TabasApi.Controller
             return CreatedAtAction(nameof(GetEmployee), new { id = employee.Id }, employee.AsDto());
         }
 
-        /*
+        
         [HttpPut("{id}")]
         public ActionResult UpdateItem(Int32 id, UpdateItemDto employeeDto)
         {

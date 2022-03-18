@@ -19,9 +19,9 @@ namespace TabasApi.Repositories
             return employees.Where(employee => employee.Id == id).SingleOrDefault();
         }
 
-        public Employee CheckPassword(string name, string password)
+        public Employee CheckPassword(string name, string password, string job)
         {
-            return employees.Where(employee => employee.Name == name & employee.Password == password).SingleOrDefault();
+            return employees.Where(employee => employee.Name == name & employee.Password == password & employee.Job == job).SingleOrDefault();
         }
 
         public void AddEmployee(Employee employee)

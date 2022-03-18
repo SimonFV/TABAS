@@ -28,6 +28,7 @@ namespace TabasApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IEmployeesRepository, EmployeesRepository>();
+            services.AddSingleton<IDataBase, DataBase>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
