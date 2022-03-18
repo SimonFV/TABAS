@@ -20,4 +20,9 @@ export class APIService {
     let header =new HttpHeaders().set('Type-contet','aplication/json');
     return this.http.post('https://localhost:5001/employee/login', employee,{headers: header});
   }
+  /*
+  postLoginHeaders(employee:JSON){
+    let header =new HttpHeaders().set('Type-contet','aplication/json');
+    return this.http.post('https://localhost:5001/employee/login', employee,{observe:'response'});
+  }*/
 }

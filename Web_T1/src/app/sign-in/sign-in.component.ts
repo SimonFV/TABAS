@@ -11,12 +11,11 @@ import { APIService } from '../services/api.service';
 export class SignInComponent implements OnInit {
   myRouterLink = " "
   role=0
-  email:any;
+  Name:any;
   pass:any;
   constructor(private activatedRoute: ActivatedRoute,
     private router: Router,
     private service :APIService
-    
     ) {}
 
   ngOnInit(): void {
@@ -39,10 +38,12 @@ export class SignInComponent implements OnInit {
       this.role=4
     }
   }
-
   changeRoute(){
-    this.service.postRegister(this.createJSON()).subscribe(resp=>{
-      console.log(resp);
+    this.service.postLogin(this.createJSON()).subscribe(resp=>{
+      console.log("NEXT "+resp/*.status*/);
+    },
+    err=>{
+      console.error("ERROR "+err.status);
     })
     this.router.navigate([this.myRouterLink]);
   }
@@ -56,10 +57,10 @@ export class SignInComponent implements OnInit {
   }
 
   getData(){
-    this.email= (document.getElementById("email")! as HTMLInputElement).value;
+    this.Name= (document.getElementById("Name")! as HTMLInputElement).value;
     this.pass= (document.getElementById("password")! as HTMLInputElement).value;
     
-    if(this.email==""||this.pass==""){
+    if(this.Name==""||this.pass==""){
       console.log("DATA");
       this.alert('Fill in all the data please','danger');
     }
@@ -75,7 +76,7 @@ export class SignInComponent implements OnInit {
     let output: JSON;
     let obj: any=
     {
-      "Name":this.email,
+      "Name":this.Name,
       "Password":this.pass,
       "Job": this.myRouterLink
     };
