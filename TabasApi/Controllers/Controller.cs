@@ -30,7 +30,7 @@ namespace TabasApi.Controller
         [HttpGet("employee/{id}")]
         public ActionResult<Trabajador> GetEmployee(string id)
         {
-            var trabajador = repository.trabajadores.Where(trabajador => trabajador.cedula == id).SingleOrDefault(); ;
+            var trabajador = repository.trabajadores.Where(trabajador => trabajador.cedula == id).SingleOrDefault();
             if (trabajador is null)
             {
                 return NotFound();
@@ -55,19 +55,22 @@ namespace TabasApi.Controller
             repository.trabajadores.Add(employee);
             return CreatedAtAction(nameof(GetEmployee), new { id = employee.cedula }, employee);
         }
-        /*
+
         [HttpPost]
         [Route("employee/login")]
-        public ActionResult LoginEmployee(LoginEmployeeDto employeeDto)
+        public ActionResult LoginEmployee(LoginTrabajadorDto trabajadorDto)
         {
-            var validEmployee = repository.CheckPassword(employeeDto.Name, employeeDto.Password, employeeDto.Job);
-            if (validEmployee is null)
+            var trabajador = repository.trabajadores.Where(trabajador =>
+                trabajador.nombre == trabajadorDto.nombre &
+                trabajador.password == trabajadorDto.password &
+                trabajador.nombre_rol == trabajadorDto.nombre_rol).SingleOrDefault();
+            if (trabajador is null)
             {
                 return NotFound();
             }
             return NoContent();
         }
-
+        /*
         // color usuario peso costo vuelo
         [HttpPost]
         [Route("baggage")]

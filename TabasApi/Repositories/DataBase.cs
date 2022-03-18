@@ -90,9 +90,9 @@ namespace TabasApi.Repositories
             trabajadores = new List<Trabajador>
                 {
                     new Trabajador {cedula = "201", nombre_rol="scan", nombre="Mario", apellido_1="Lópes", apellido_2="Valdez", password="123"},
-                    new Trabajador {cedula = "101", nombre_rol="administrador", nombre="Jimena", apellido_1="Arco", apellido_2="Suárez", password="123"},
+                    new Trabajador {cedula = "101", nombre_rol="admin", nombre="Jimena", apellido_1="Arco", apellido_2="Suárez", password="123"},
                     new Trabajador {cedula = "301", nombre_rol="embarcador", nombre="Kenneth", apellido_1="Rodríguez", apellido_2="Cruz", password="123"},
-                    new Trabajador {cedula = "401", nombre_rol="recepcionista", nombre="María", apellido_1="Jiménez", apellido_2="Sánchez", password="123"}
+                    new Trabajador {cedula = "401", nombre_rol="receptionist", nombre="Maria", apellido_1="Jiménez", apellido_2="Sánchez", password="123"}
                 };
             maletas = new List<Maleta>
                 {
