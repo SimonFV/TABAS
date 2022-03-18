@@ -5,6 +5,7 @@ using TabasApi.Entities;
 using System;
 using System.Linq;
 using TabasApi.Dtos;
+using System.Text.Json;
 
 namespace TabasApi.Controller
 {
@@ -12,6 +13,8 @@ namespace TabasApi.Controller
     [Route("[controller]")]
     public class Controller : ControllerBase
     {
+        // Path del archivo json\
+        // Creacion del la base de datos
         private readonly IDataBase repository;
 
         public Controller(IDataBase repository)

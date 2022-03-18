@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,8 +28,7 @@ namespace TabasApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IEmployeesRepository, EmployeesRepository>();
-            services.AddSingleton<IDataBase, DataBase>();
+            services.AddSingleton<IDataBase>(JsonSerializer.Deserialize<DataBase>(System.IO.File.ReadAllText("DataBase.json")));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
