@@ -9,27 +9,28 @@ using TabasApi.Dtos;
 namespace TabasApi.Controller
 {
     [ApiController]
-    [Route("items")]
-    public class ItemsController : ControllerBase
+    [Route("[controller]")]
+    public class Controller : ControllerBase
     {
-        private readonly IItemsRepository repository;
+        private readonly IEmployeesRepository repository;
 
-        public ItemsController(IItemsRepository repository)
+        public Controller(IEmployeesRepository repository)
         {
             this.repository = repository;
         }
 
         [HttpGet]
-        public IEnumerable<ItemDto> GetItems()
+        [Route("employee")]
+        public IEnumerable<EmployeeDto> GetEmployees()
         {
-            var items = repository.GetItems().Select(items => items.AsDto());
-            return items;
+            var employees = repository.GetEmployees().Select(employees => employees.AsDto());
+            return employees;
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<ItemDto> GetItem(Guid id)
+        [HttpGet("employee/{id}")]
+        public ActionResult<EmployeeDto> GetEmployee(Int32 id)
         {
-            var item = repository.GetItem(id);
+            var item = repository.GetEmployee(id);
             if (item is null)
             {
                 return NotFound();
@@ -38,24 +39,40 @@ namespace TabasApi.Controller
         }
 
         [HttpPost]
-        public ActionResult<ItemDto> CreateItem(CreateItemDto itemDto)
+        [Route("employee/register")]
+        public ActionResult<EmployeeDto> RegisterEmployee(RegisterEmployeeDto employeeDto)
         {
-            Item item = new()
+            Employee employee = new()
             {
-                Id = Guid.NewGuid(),
-                Name = itemDto.Name,
-                Price = itemDto.Price,
-                CreatedDate = DateTimeOffset.UtcNow
+                Id = employeeDto.Id,
+                Name = employeeDto.Name,
+                Password = employeeDto.Password,
+                RegisteredDate = DateTimeOffset.UtcNow,
+                Job = employeeDto.Job
             };
 
-            repository.CreateItem(item);
-            return CreatedAtAction(nameof(GetItem), new { id = item.Id }, item.AsDto());
+            repository.AddEmployee(employee);
+            return CreatedAtAction(nameof(GetEmployee), new { id = employee.Id }, employee.AsDto());
         }
 
-        [HttpPut("{id}")]
-        public ActionResult UpdateItem(Guid id, UpdateItemDto itemDto)
+        [HttpPost]
+        [Route("employee/login")]
+        public ActionResult LoginEmployee(LoginEmployeeDto employeeDto)
         {
-            var existingItem = repository.GetItem(id);
+            var validEmployee = repository.CheckPassword(employeeDto.Name, employeeDto.Password);
+            if (validEmployee is null)
+            {
+                return NotFound();
+            }
+            return NoContent();
+        }
+
+
+        /*
+        [HttpPut("{id}")]
+        public ActionResult UpdateItem(Int32 id, UpdateItemDto employeeDto)
+        {
+            var existingItem = repository.GetEmployee(id);
 
             if (existingItem is null)
             {
@@ -64,8 +81,8 @@ namespace TabasApi.Controller
 
             Item updatedItem = existingItem with
             {
-                Name = itemDto.Name,
-                Price = itemDto.Price
+                Name = employeeDto.Name,
+                Price = employeeDto.Price
             };
 
             repository.UpdateItem(updatedItem);
@@ -87,5 +104,6 @@ namespace TabasApi.Controller
 
             return NoContent();
         }
+        */
     }
 }

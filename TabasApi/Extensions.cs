@@ -5,14 +5,15 @@ namespace TabasApi
 {
     public static class Extensions
     {
-        public static ItemDto AsDto(this Item item)
+        public static EmployeeDto AsDto(this Employee employee)
         {
-            return new ItemDto
+            return new EmployeeDto
             {
-                Id = item.Id,
-                Name = item.Name,
-                Price = item.Price,
-                CreatedDate = item.CreatedDate
+                Id = employee.Id,
+                Name = employee.Name,
+                Password = employee.Password,
+                RegisteredDate = employee.RegisteredDate,
+                Job = employee.Job
             };
         }
     }
