@@ -67,6 +67,23 @@ namespace TabasApi.Controller
             return NoContent();
         }
 
+        // color usuario peso costo vuelo
+        [HttpPost]
+        [Route("baggage")]
+        public ActionResult<EmployeeDto> AddBaggage(RegisterEmployeeDto employeeDto)
+        {
+            Employee employee = new()
+            {
+                Id = employeeDto.Id,
+                Name = employeeDto.Name,
+                Password = employeeDto.Password,
+                RegisteredDate = DateTimeOffset.UtcNow,
+                Job = employeeDto.Job
+            };
+
+            repository.AddEmployee(employee);
+            return CreatedAtAction(nameof(GetEmployee), new { id = employee.Id }, employee.AsDto());
+        }
 
         /*
         [HttpPut("{id}")]
