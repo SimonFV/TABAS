@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Route, Router, RouterLink } from '@angular/router';
+import { APIService } from '../services/api.service';
+
 @Component({
   selector: 'sign-in',
   templateUrl: './sign-in.component.html',
@@ -12,7 +14,10 @@ export class SignInComponent implements OnInit {
   email:any;
   pass:any;
   constructor(private activatedRoute: ActivatedRoute,
-    private router: Router) {}
+    private router: Router,
+    private service :APIService
+    
+    ) {}
 
   ngOnInit(): void {
   }
@@ -36,7 +41,9 @@ export class SignInComponent implements OnInit {
   }
 
   changeRoute(){
-    this.createJSON();
+    this.service.postRegister(this.createJSON()).subscribe(resp=>{
+      console.log(resp);
+    })
     this.router.navigate([this.myRouterLink]);
   }
 
@@ -64,15 +71,17 @@ export class SignInComponent implements OnInit {
       this.changeRoute();
     }
   }
-  createJSON(){
+  createJSON():JSON{
     let output: JSON;
     let obj: any=
     {
-      "email":this.email,
-      "pass":this.pass
+      "Name":this.email,
+      "Password":this.pass,
+      "Job": this.myRouterLink
     };
     output=<JSON>obj
     console.log(output);
+    return output;
   }
 
 }

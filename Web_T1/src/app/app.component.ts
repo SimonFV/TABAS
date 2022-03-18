@@ -8,9 +8,5 @@ import { APIService} from './services/api.service'
 })
 export class AppComponent {
   title = 'TABAS';
-  constructor(private service:APIService){
-    this.service.getItem().subscribe(resp=>{
-      console.log(resp);
-    })
-  }
+ 
 }

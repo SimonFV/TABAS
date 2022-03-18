@@ -10,6 +10,14 @@ export class APIService {
 
   getItem(){
     let header =new HttpHeaders().set('Type-contet','aplication/json');
-    return this.http.get('https://localhost:5001/items/7f4316f4-c18b-4a6a-bfd6-5d6d7193cac6', {headers: header});
+    return this.http.get('https://localhost:5001/employee', {headers: header});
+  }
+  postRegister(employee:JSON){
+    let header =new HttpHeaders().set('Type-contet','aplication/json');
+    return this.http.post('https://localhost:5001/employee/register', employee,{headers: header});
+  }
+  postLogin(employee:JSON){
+    let header =new HttpHeaders().set('Type-contet','aplication/json');
+    return this.http.post('https://localhost:5001/employee/login', employee,{headers: header});
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router, RouterLink } from '@angular/router';
+import { APIService} from '../services/api.service'
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -16,7 +17,10 @@ export class SignUpComponent implements OnInit {
   email:any;
   pass:any;
   constructor(private activatedRoute: ActivatedRoute,
-    private router: Router) {}
+    private router: Router,
+    private service:APIService
+    
+    ) {}
 
   ngOnInit(): void {
   }
@@ -41,7 +45,10 @@ export class SignUpComponent implements OnInit {
       this.alert('Fill in all the data please','danger');
     }
     else{
-      this.createJSON();
+      
+      this.service.postRegister(this.createJSON()).subscribe(resp=>{
+        console.log(resp);
+      })
       this.router.navigate([this.myRouterLink]);
     }
   }
@@ -66,20 +73,24 @@ export class SignUpComponent implements OnInit {
     }
     return complete;
   }
-  createJSON(){
+  createJSON():JSON{
     let output: JSON;
     let obj: any=
     {
+      "Id": this.ID,
+      "Job": this.myRouterLink,
       "Name":this.name,
+      "Password":this.pass
+      /*
       "LName": this.lastName,
       "scndLastName": this.scndLastName,
-      "ID": this.ID,
-      "role": this.myRouterLink,
-      "email":this.email,
-      "pass":this.pass
+      
+      "email":this.email,*/
+      
     };
     output=<JSON>obj
     console.log(output);
+    return output;
   }
 
 }
