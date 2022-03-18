@@ -10,6 +10,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { BaggageComponent } from './baggage/baggage.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MobileAppComponent } from './mobile-app/mobile-app.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MobileAppComponent } from './mobile-app/mobile-app.component';
   imports: [
     BrowserModule,
     NgbModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {path: '', component: SignUpComponent},
       {path: 'admin', component: AdminComponent},

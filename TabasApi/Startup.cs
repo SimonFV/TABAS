@@ -34,6 +34,14 @@ namespace TabasApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "tabasapi", Version = "v1" });
             });
+
+            services.AddCors(options =>{
+                options.AddPolicy("MyCors", builder=>{
+                    builder.SetIsOriginAllowed(origin=>new Uri(origin).Host=="localhost")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +59,7 @@ namespace TabasApi
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseCors("MyCors");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
