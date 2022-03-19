@@ -1,20 +1,15 @@
+using System.Text.Json;
 using TabasApi.Dtos;
-using TabasApi.Entities;
+using TabasApi.Repositories;
 
 namespace TabasApi
 {
     public static class Extensions
     {
-        public static EmployeeDto AsDto(this Employee employee)
+        public static void UpdateDB(this IDataBase db)
         {
-            return new EmployeeDto
-            {
-                Id = employee.Id,
-                Name = employee.Name,
-                Password = employee.Password,
-                RegisteredDate = employee.RegisteredDate,
-                Job = employee.Job
-            };
+            string jsonString = JsonSerializer.Serialize(db);
+            System.IO.File.WriteAllText("DataBase.json", jsonString);
         }
     }
 }

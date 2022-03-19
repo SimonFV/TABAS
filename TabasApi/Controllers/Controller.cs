@@ -1,7 +1,6 @@
 using TabasApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using TabasApi.Entities;
 using System;
 using System.Linq;
 using TabasApi.Dtos;
@@ -30,6 +29,14 @@ namespace TabasApi.Controller
             return trabajadores;
         }
 
+        [HttpGet]
+        [Route("baggage")]
+        public IEnumerable<Maleta> GetBags()
+        {
+            var bags = repository.maletas;
+            return bags;
+        }
+
         [HttpGet("employee/{id}")]
         public ActionResult<Trabajador> GetEmployee(string id)
         {
@@ -41,21 +48,29 @@ namespace TabasApi.Controller
             return trabajador;
         }
 
+        [HttpGet("baggage/{number}")]
+        public ActionResult<Maleta> GetBaggage(string number)
+        {
+            var bag = repository.maletas.Where(p => p.numero == number).SingleOrDefault();
+            if (bag is null)
+            {
+                return NotFound();
+            }
+            return bag;
+        }
+
         [HttpPost]
         [Route("employee/register")]
-        public ActionResult<Trabajador> RegisterEmployee(Trabajador employeeDto)
+        public ActionResult<Trabajador> RegisterEmployee(Trabajador employee)
         {
-            Trabajador employee = new()
+            var match = repository.trabajadores.Where(p => p.cedula == employee.cedula).SingleOrDefault();
+            if (match is not null)
             {
-                cedula = employeeDto.cedula,
-                nombre_rol = employeeDto.nombre_rol,
-                nombre = employeeDto.nombre,
-                apellido_1 = employeeDto.apellido_1,
-                apellido_2 = employeeDto.apellido_2,
-                password = employeeDto.password
-            };
+                return employee;
+            }
 
             repository.trabajadores.Add(employee);
+            repository.UpdateDB();
             return CreatedAtAction(nameof(GetEmployee), new { id = employee.cedula }, employee);
         }
 
@@ -73,26 +88,23 @@ namespace TabasApi.Controller
             }
             return NoContent();
         }
-        /*
+
         // color usuario peso costo vuelo
         [HttpPost]
         [Route("baggage")]
-        public ActionResult<EmployeeDto> AddBaggage(RegisterEmployeeDto employeeDto)
+        public ActionResult<Maleta> AddBaggage(Maleta bag)
         {
-            Employee employee = new()
+            var match = repository.maletas.Where(p => p.numero == bag.numero).SingleOrDefault();
+            if (match is not null)
             {
-                Id = employeeDto.Id,
-                Name = employeeDto.Name,
-                Password = employeeDto.Password,
-                RegisteredDate = DateTimeOffset.UtcNow,
-                Job = employeeDto.Job
-            };
-
-            repository.AddEmployee(employee);
-            return CreatedAtAction(nameof(GetEmployee), new { id = employee.Id }, employee.AsDto());
+                return bag;
+            }
+            repository.maletas.Add(bag);
+            repository.UpdateDB();
+            return CreatedAtAction(nameof(GetBaggage), new { number = bag.numero }, bag);
         }
 
-        
+        /*
         [HttpPut("{id}")]
         public ActionResult UpdateItem(Int32 id, UpdateItemDto employeeDto)
         {

@@ -24,9 +24,6 @@ namespace TabasApi.Repositories
     {
         public string numero { get; set; }
         public string usuario_cedula { get; set; }
-        public string trabajador_cedula { get; set; }
-        public string id_bagcar { get; set; }
-        public string id_vuelo { get; set; }
         public string costo { get; set; }
         public string peso { get; set; }
         public string color { get; set; }

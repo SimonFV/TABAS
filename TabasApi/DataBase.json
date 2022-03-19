@@ -49,15 +49,20 @@
             "apellido_1": "Jim\u00E9nez",
             "apellido_2": "S\u00E1nchez",
             "password": "123"
+        },
+        {
+            "cedula": "602",
+            "nombre_rol": "receptionist",
+            "nombre": "Simon",
+            "apellido_1": "Fallas",
+            "apellido_2": "Villalobos",
+            "password": "123"
         }
     ],
     "maletas": [
         {
             "numero": "1",
             "usuario_cedula": "685",
-            "trabajador_cedula": "401",
-            "id_bagcar": "75",
-            "id_vuelo": "253",
             "costo": "40",
             "peso": "20",
             "color": "rojizo"
@@ -65,9 +70,6 @@
         {
             "numero": "2",
             "usuario_cedula": "685",
-            "trabajador_cedula": "401",
-            "id_bagcar": "75",
-            "id_vuelo": "253",
             "costo": "30",
             "peso": "30",
             "color": "blanco"
@@ -75,9 +77,6 @@
         {
             "numero": "3",
             "usuario_cedula": "714",
-            "trabajador_cedula": "401",
-            "id_bagcar": "75",
-            "id_vuelo": "253",
             "costo": "80",
             "peso": "80",
             "color": "negro"
@@ -85,9 +84,6 @@
         {
             "numero": "4",
             "usuario_cedula": "347",
-            "trabajador_cedula": "401",
-            "id_bagcar": "855",
-            "id_vuelo": "268",
             "costo": "50",
             "peso": "20",
             "color": "azul"
@@ -95,9 +91,6 @@
         {
             "numero": "5",
             "usuario_cedula": "347",
-            "trabajador_cedula": "401",
-            "id_bagcar": "855",
-            "id_vuelo": "268",
             "costo": "44",
             "peso": "15",
             "color": "negro"
@@ -105,9 +98,6 @@
         {
             "numero": "6",
             "usuario_cedula": "952",
-            "trabajador_cedula": "401",
-            "id_bagcar": "855",
-            "id_vuelo": "268",
             "costo": "33",
             "peso": "25",
             "color": "verde"
