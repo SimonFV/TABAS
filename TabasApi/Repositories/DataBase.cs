@@ -42,8 +42,8 @@ namespace TabasApi.Repositories
     {
         public string identificador { get; set; }
         public string id_vuelo { get; set; }
+        public List<string> idMaletas { get; set; }
         public string sello_seguridad { get; set; }
-        public string cantidad_maleta { get; set; }
         public string modelo { get; set; }
         public string marca { get; set; }
     }

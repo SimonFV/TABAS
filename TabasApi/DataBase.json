@@ -28,7 +28,7 @@
         },
         {
             "cedula": "101",
-            "nombre_rol": "administrador",
+            "nombre_rol": "admin",
             "nombre": "Jimena",
             "apellido_1": "Arco",
             "apellido_2": "Su\u00E1rez",
@@ -136,17 +136,25 @@
     "bagcars": [
         {
             "identificador": "75",
-            "id_vuelo": "253",
-            "sello_seguridad": "15asdaw685",
-            "cantidad_maleta": "2",
+            "id_vuelo": "",
+            "sello_seguridad": "0",
+            "idMaletas": [],
             "modelo": "ATX240EH",
             "marca": "2018"
         },
         {
             "identificador": "855",
-            "id_vuelo": "268",
-            "sello_seguridad": "8as4d63aw8",
-            "cantidad_maleta": "3",
+            "id_vuelo": "",
+            "sello_seguridad": "0",
+            "idMaletas": [],
+            "modelo": "ATX240EHL",
+            "marca": "2016"
+        },
+        {
+            "identificador": "245",
+            "id_vuelo": "",
+            "sello_seguridad": "0",
+            "idMaletas": [],
             "modelo": "ATX240EHL",
             "marca": "2016"
         }

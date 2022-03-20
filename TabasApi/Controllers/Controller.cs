@@ -104,6 +104,25 @@ namespace TabasApi.Controller
             return CreatedAtAction(nameof(GetBaggage), new { number = bag.numero }, bag);
         }
 
+        [HttpPost]
+        [Route("bagtobagcar")]
+        public ActionResult AddBagToCar(string idBagcar, string idBag)
+        {
+            var bagcar = repository.bagcars.Where(p => p.identificador == idBagcar).SingleOrDefault();
+            if (bagcar is null)
+            {
+                return NotFound();
+            }
+            var bag = bagcar.idMaletas.Where(p => p == idBag).SingleOrDefault();
+            if (bagcar is not null)
+            {
+                return NoContent();
+            }
+            bagcar.idMaletas.Add(bag);
+            repository.UpdateDB();
+            return NoContent();
+        }
+
         /*
         [HttpPut("{id}")]
         public ActionResult UpdateItem(Int32 id, UpdateItemDto employeeDto)
