@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { APIService } from '../services/api.service';
 
 @Component({
   selector: 'app-admin',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class AdminComponent implements OnInit {
   bagCartID:any;
   flightID:any;
-  constructor() { }
+  constructor(private service: APIService) { }
 
   ngOnInit(): void {
   }
@@ -25,11 +26,14 @@ export class AdminComponent implements OnInit {
     if(this.bagCartID==""||this.flightID==""){
       this.alert('Fill in all the data please','danger');
     }else{
-      this.createJSON();
+      this.service.postAssignment(this.createJSON());
+      /*.subscribe(resp=>{
+        console.log(resp);
+      })*/
     }
     
   }
-  createJSON(){
+  createJSON():JSON{
     let output: JSON;
     let obj: any=
     {
@@ -37,7 +41,8 @@ export class AdminComponent implements OnInit {
       "flightID": this.flightID
     };
     output=<JSON>obj
-    console.log(output);
+    return output;
+    //console.log(output);
   }
 
 }

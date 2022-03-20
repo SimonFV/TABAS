@@ -5,15 +5,15 @@
             "descripcion": "escanea"
         },
         {
-            "nombre": "administrador",
+            "nombre": "administrator",
             "descripcion": "gestiona"
         },
         {
-            "nombre": "embarcador",
+            "nombre": "shipper",
             "descripcion": "manejo"
         },
         {
-            "nombre": "recepcionista",
+            "nombre": "receptionist",
             "descripcion": "atencion"
         }
     ],
@@ -28,7 +28,7 @@
         },
         {
             "cedula": "101",
-            "nombre_rol": "administrador",
+            "nombre_rol": "administrator",
             "nombre": "Jimena",
             "apellido_1": "Arco",
             "apellido_2": "Su\u00E1rez",
@@ -36,7 +36,7 @@
         },
         {
             "cedula": "301",
-            "nombre_rol": "embarcador",
+            "nombre_rol": "shipper",
             "nombre": "Kenneth",
             "apellido_1": "Rodr\u00EDguez",
             "apellido_2": "Cruz",
@@ -44,7 +44,7 @@
         },
         {
             "cedula": "401",
-            "nombre_rol": "recepcionista",
+            "nombre_rol": "receptionist",
             "nombre": "Mar\u00EDa",
             "apellido_1": "Jim\u00E9nez",
             "apellido_2": "S\u00E1nchez",
@@ -57,6 +57,14 @@
             "apellido_1": "Fallas",
             "apellido_2": "Villalobos",
             "password": "123"
+        },
+        {
+            "cedula": "117",
+            "nombre_rol": "receptionist",
+            "nombre": "Sergio",
+            "apellido_1": "Rios",
+            "apellido_2": "Campos",
+            "password": "1234"
         }
     ],
     "maletas": [
@@ -101,6 +109,13 @@
             "costo": "33",
             "peso": "25",
             "color": "verde"
+        },
+        {
+            "numero": null,
+            "usuario_cedula": "Sergio",
+            "costo": null,
+            "peso": null,
+            "color": "Azul"
         }
     ],
     "usuarios": [

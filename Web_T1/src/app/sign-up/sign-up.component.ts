@@ -45,17 +45,16 @@ export class SignUpComponent implements OnInit {
       this.alert('Fill in all the data please', 'danger');
     }
     else {
-
       this.service.postRegister(this.createJSON()).subscribe(resp => {
         console.log(resp);
-        this.router.navigate([this.myRouterLink]);
+        //this.router.navigate([this.myRouterLink]);
       },
         (err) => {
           console.log(err);
         });
     }
+    this.router.navigate([this.myRouterLink]);
   }
-
   alert(message: any, type: any) {
     const alertPlaceholder = document.getElementById('alertDiv')!
     var wrapper = document.createElement('div')
@@ -94,6 +93,7 @@ export class SignUpComponent implements OnInit {
 
     };
     output = <JSON>obj
+    console.log("OUTPUT \n");
     console.log(output);
     return output;
   }
