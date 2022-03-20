@@ -1,1 +1,190 @@
-{"rol":[{"nombre":"scan","descripcion":"escanea"},{"nombre":"administrador","descripcion":"gestiona"},{"nombre":"embarcador","descripcion":"manejo"},{"nombre":"recepcionista","descripcion":"atencion"}],"trabajador":[{"cedula":"201","nombre_rol":"scan","nombre":"Mario","apellido_1":"L\u00F3pes","apellido_2":"Valdez"},{"cedula":"101","nombre_rol":"administrador","nombre":"Jimena","apellido_1":"Arco","apellido_2":"Su\u00E1rez"},{"cedula":"301","nombre_rol":"embarcador","nombre":"Kenneth","apellido_1":"Rodr\u00EDguez","apellido_2":"Cruz"},{"cedula":"401","nombre_rol":"recepcionista","nombre":"Mar\u00EDa","apellido_1":"Jim\u00E9nez","apellido_2":"S\u00E1nchez"}],"maleta":[{"numero":"1","usuario_cedula":"685","trabajador_cedula":"401","id_bagcar":"75","id_vuelo":"253","costo":"40","peso":"20","color":"rojizo"},{"numero":"2","usuario_cedula":"685","trabajador_cedula":"401","id_bagcar":"75","id_vuelo":"253","costo":"30","peso":"30","color":"blanco"},{"numero":"3","usuario_cedula":"714","trabajador_cedula":"401","id_bagcar":"75","id_vuelo":"253","costo":"80","peso":"80","color":"negro"},{"numero":"4","usuario_cedula":"347","trabajador_cedula":"401","id_bagcar":"855","id_vuelo":"268","costo":"50","peso":"20","color":"azul"},{"numero":"5","usuario_cedula":"347","trabajador_cedula":"401","id_bagcar":"855","id_vuelo":"268","costo":"44","peso":"15","color":"negro"},{"numero":"6","usuario_cedula":"952","trabajador_cedula":"401","id_bagcar":"855","id_vuelo":"268","costo":"33","peso":"25","color":"verde"}],"usuario":[{"cedula":"685","nombre":"Jacob","apellido_1":"Trejos","apellido_2":"Garc\u00EDa","telefono":"89456231"},{"cedula":"714","nombre":"Yara","apellido_1":"Taylor","apellido_2":"Licea","telefono":"85624179"},{"cedula":"347","nombre":"Pedro","apellido_1":"Farran ","apellido_2":"Osle","telefono":"87459123"},{"cedula":"952","nombre":"Griselda","apellido_1":"Alguilera","apellido_2":"Madrigal","telefono":"82965147"}],"bagcar":[{"identificador":"75","id_vuelo":"253","sello_seguridad":"15asdaw685","cantidad_maleta":"2","modelo":"ATX240EH","marca":"2018"},{"identificador":"855","id_vuelo":"268","sello_seguridad":"8as4d63aw8","cantidad_maleta":"3","modelo":"ATX240EHL","marca":"2016"}],"vuelo":[{"numero_vuelo":"253","id_avion":"001","total_maletas":"3","maletas_avion":"2","rechazadas":"1"},{"numero_vuelo":"268","id_avion":"002","total_maletas":"3","maletas_avion":"3","rechazadas":"0"}],"avion":[{"identificador":"001","nombre":"Boeing 747 \u2013 400 ERF","capacidad":"100","tipo":"carga"},{"identificador":"002","nombre":"Boeing 737","capacidad":"50","tipo":"mixtos"}]}
+{
+    "rol": [
+        {
+            "nombre": "scan",
+            "descripcion": "escanea"
+        },
+        {
+            "nombre": "administrator",
+            "descripcion": "gestiona"
+        },
+        {
+            "nombre": "shipper",
+            "descripcion": "manejo"
+        },
+        {
+            "nombre": "receptionist",
+            "descripcion": "atencion"
+        }
+    ],
+    "trabajador": [
+        {
+            "cedula": "201",
+            "nombre_rol": "scan",
+            "nombre": "Mario",
+            "apellido_1": "L\u00F3pes",
+            "apellido_2": "Valdez"
+        },
+        {
+            "cedula": "101",
+            "nombre_rol": "administrator",
+            "nombre": "Jimena",
+            "apellido_1": "Arco",
+            "apellido_2": "Su\u00E1rez"
+        },
+        {
+            "cedula": "301",
+            "nombre_rol": "shipper",
+            "nombre": "Kenneth",
+            "apellido_1": "Rodr\u00EDguez",
+            "apellido_2": "Cruz"
+        },
+        {
+            "cedula": "401",
+            "nombre_rol": "receptionist",
+            "nombre": "Mar\u00EDa",
+            "apellido_1": "Jim\u00E9nez",
+            "apellido_2": "S\u00E1nchez"
+        }
+    ],
+    "maleta": [
+        {
+            "numero": "1",
+            "usuario_cedula": "685",
+            "trabajador_cedula": "401",
+            "id_bagcar": "75",
+            "id_vuelo": "253",
+            "costo": "40",
+            "peso": "20",
+            "color": "rojizo"
+        },
+        {
+            "numero": "2",
+            "usuario_cedula": "685",
+            "trabajador_cedula": "401",
+            "id_bagcar": "75",
+            "id_vuelo": "253",
+            "costo": "30",
+            "peso": "30",
+            "color": "blanco"
+        },
+        {
+            "numero": "3",
+            "usuario_cedula": "714",
+            "trabajador_cedula": "401",
+            "id_bagcar": "75",
+            "id_vuelo": "253",
+            "costo": "80",
+            "peso": "80",
+            "color": "negro"
+        },
+        {
+            "numero": "4",
+            "usuario_cedula": "347",
+            "trabajador_cedula": "401",
+            "id_bagcar": "855",
+            "id_vuelo": "268",
+            "costo": "50",
+            "peso": "20",
+            "color": "azul"
+        },
+        {
+            "numero": "5",
+            "usuario_cedula": "347",
+            "trabajador_cedula": "401",
+            "id_bagcar": "855",
+            "id_vuelo": "268",
+            "costo": "44",
+            "peso": "15",
+            "color": "negro"
+        },
+        {
+            "numero": "6",
+            "usuario_cedula": "952",
+            "trabajador_cedula": "401",
+            "id_bagcar": "855",
+            "id_vuelo": "268",
+            "costo": "33",
+            "peso": "25",
+            "color": "verde"
+        }
+    ],
+    "usuario": [
+        {
+            "cedula": "685",
+            "nombre": "Jacob",
+            "apellido_1": "Trejos",
+            "apellido_2": "Garc\u00EDa",
+            "telefono": "89456231"
+        },
+        {
+            "cedula": "714",
+            "nombre": "Yara",
+            "apellido_1": "Taylor",
+            "apellido_2": "Licea",
+            "telefono": "85624179"
+        },
+        {
+            "cedula": "347",
+            "nombre": "Pedro",
+            "apellido_1": "Farran ",
+            "apellido_2": "Osle",
+            "telefono": "87459123"
+        },
+        {
+            "cedula": "952",
+            "nombre": "Griselda",
+            "apellido_1": "Alguilera",
+            "apellido_2": "Madrigal",
+            "telefono": "82965147"
+        }
+    ],
+    "bagcar": [
+        {
+            "identificador": "75",
+            "id_vuelo": "253",
+            "sello_seguridad": "15asdaw685",
+            "cantidad_maleta": "2",
+            "modelo": "ATX240EH",
+            "marca": "2018"
+        },
+        {
+            "identificador": "855",
+            "id_vuelo": "268",
+            "sello_seguridad": "8as4d63aw8",
+            "cantidad_maleta": "3",
+            "modelo": "ATX240EHL",
+            "marca": "2016"
+        }
+    ],
+    "vuelo": [
+        {
+            "numero_vuelo": "253",
+            "id_avion": "001",
+            "total_maletas": "3",
+            "maletas_avion": "2",
+            "rechazadas": "1"
+        },
+        {
+            "numero_vuelo": "268",
+            "id_avion": "002",
+            "total_maletas": "3",
+            "maletas_avion": "3",
+            "rechazadas": "0"
+        }
+    ],
+    "avion": [
+        {
+            "identificador": "001",
+            "nombre": "Boeing 747 \u2013 400 ERF",
+            "capacidad": "100",
+            "tipo": "carga"
+        },
+        {
+            "identificador": "002",
+            "nombre": "Boeing 737",
+            "capacidad": "50",
+            "tipo": "mixtos"
+        }
+    ]
+}

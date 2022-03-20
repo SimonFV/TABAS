@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { APIService } from '../services/api.service';
 @Component({
   selector: 'app-baggage',
   templateUrl: './baggage.component.html',
@@ -11,7 +11,7 @@ export class BaggageComponent implements OnInit {
   weight:any;
   cost:any;
   id:any;
-  constructor() { }
+  constructor(private service: APIService) { }
 
   ngOnInit(): void {
   }
@@ -28,25 +28,29 @@ export class BaggageComponent implements OnInit {
     this.weight= (document.getElementById("weight")! as HTMLInputElement).value;
     this.cost= (document.getElementById("cost")! as HTMLInputElement).value;
     this.id= (document.getElementById("id")! as HTMLInputElement).value;
-    
     if(this.user==""||this.color==""||this.weight==""||this.cost==""||this.id==""){
       this.alert('Fill in all the data please','danger');
     }else{
-      this.createJSON();
+      this.service.postBaggage(this.createJSON()).subscribe(resp=>{
+        console.log(resp);
+        this.alert('Bag registered','success');
+      })
+      
     }
   }
-  createJSON(){
+  createJSON():JSON{
     let output: JSON;
     let obj: any=
     {
-      "user":this.user,
-      "color": this.color,
-      "weight": this.weight,
-      "cost": this.cost,
-      "id":this.id
+      "numero": this.id,
+      "usuario_cedula":this.user,
+      "costo": this.cost,
+      "peso": this.weight,
+      "color": this.color
     };
     output=<JSON>obj
     console.log(output);
+    return output;
   }
 
 }

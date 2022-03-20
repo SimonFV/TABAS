@@ -25,4 +25,18 @@ export class APIService {
     let header = new HttpHeaders().set('Type-contet', 'aplication/json');
     return this.http.post('https://localhost:5001/employee/login', employee, { headers: header });
   }
+  postBaggage(bag:JSON){
+    let header = new HttpHeaders().set('Type-contet', 'aplication/json');
+    return this.http.post('https://localhost:5001/baggage', bag, { headers: header });
+  }
+
+  postAssignment(assignment:JSON){
+    //let header = new HttpHeaders().set('Type-contet', 'aplication/json');
+    //return this.http.post('https://localhost:5001/', assignment, { headers: header });
+    console.log(assignment);
+  }
+
+  
+
+
 }

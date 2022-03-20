@@ -62,14 +62,11 @@ export class SignInComponent implements OnInit {
     this.pass = (document.getElementById("password")! as HTMLInputElement).value;
 
     if (this.Name == "" || this.pass == "") {
-      console.log("DATA");
       this.alert('Fill in all the data please', 'danger');
     }
     else if (this.role == 0) {
-      console.log("ROLE");
       this.alert('Choose a role', 'danger')
     } else {
-      console.log("ELSE");
       this.changeRoute();
     }
     return false;
