@@ -11,6 +11,7 @@ import { BaggageComponent } from './baggage/baggage.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MobileAppComponent } from './mobile-app/mobile-app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TablasComponent } from './tablas/tablas.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     ReportsComponent,
     BaggageComponent,
     SignUpComponent,
-    MobileAppComponent
+    MobileAppComponent,
+    TablasComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import { HttpClientModule } from '@angular/common/http';
       {path: 'signIn', component: SignInComponent},
       {path: 'baggage', component: BaggageComponent},
       {path: 'report',component:ReportsComponent},
-      {path:'mobileApp', component: MobileAppComponent}
+      {path:'mobileApp', component: MobileAppComponent},
+      {path: 'tablas', component: TablasComponent}
     ]
     )
   ],

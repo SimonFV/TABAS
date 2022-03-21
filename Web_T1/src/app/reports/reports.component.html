@@ -1,1 +1,23 @@
-<p>reports works!</p>
+<div class="col-auto p-5 text-center">
+    <table class="table table-hover  table-bordered align-middle caption-top">
+        <caption>List of Baggage</caption>
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">User</th>
+                <th scope="col">Cost</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Color</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let baggage of data">
+            <tr>
+                <td>{{baggage.numero}}</td>
+                <td>{{baggage.usuario_cedula}}</td>
+                <td>{{baggage.costo}}</td>
+                <td>{{baggage.peso}}</td>
+                <td>{{baggage.color}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

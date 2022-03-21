@@ -26,10 +26,10 @@ export class AdminComponent implements OnInit {
     if(this.bagCartID==""||this.flightID==""){
       this.alert('Fill in all the data please','danger');
     }else{
-      this.service.postAssignment(this.createJSON());
-      /*.subscribe(resp=>{
+      this.service.postAssignment(this.createJSON()).subscribe(resp=>{
+        this.alert('Bagcart assigned','success')
         console.log(resp);
-      })*/
+      })
     }
     
   }
@@ -37,12 +37,11 @@ export class AdminComponent implements OnInit {
     let output: JSON;
     let obj: any=
     {
-      "bagCartID":this.bagCartID,
-      "flightID": this.flightID
+      "idBagCar":this.bagCartID,
+      "idVuelo": this.flightID
     };
     output=<JSON>obj
     return output;
-    //console.log(output);
   }
 
 }

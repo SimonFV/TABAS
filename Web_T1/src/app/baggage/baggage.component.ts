@@ -10,7 +10,6 @@ export class BaggageComponent implements OnInit {
   color:any;
   weight:any;
   cost:any;
-  id:any;
   constructor(private service: APIService) { }
 
   ngOnInit(): void {
@@ -27,8 +26,7 @@ export class BaggageComponent implements OnInit {
     this.color= (document.getElementById("color")! as HTMLInputElement).value;
     this.weight= (document.getElementById("weight")! as HTMLInputElement).value;
     this.cost= (document.getElementById("cost")! as HTMLInputElement).value;
-    this.id= (document.getElementById("id")! as HTMLInputElement).value;
-    if(this.user==""||this.color==""||this.weight==""||this.cost==""||this.id==""){
+    if(this.user==""||this.color==""||this.weight==""||this.cost==""){
       this.alert('Fill in all the data please','danger');
     }else{
       this.service.postBaggage(this.createJSON()).subscribe(resp=>{
@@ -42,7 +40,6 @@ export class BaggageComponent implements OnInit {
     let output: JSON;
     let obj: any=
     {
-      "numero": this.id,
       "usuario_cedula":this.user,
       "costo": this.cost,
       "peso": this.weight,
