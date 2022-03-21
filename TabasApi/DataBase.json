@@ -111,13 +111,6 @@
             "color": "verde"
         },
         {
-            "numero": null,
-            "usuario_cedula": "Sergio",
-            "costo": null,
-            "peso": null,
-            "color": "Azul"
-        },
-        {
             "numero": "8",
             "usuario_cedula": "604",
             "costo": "20",
