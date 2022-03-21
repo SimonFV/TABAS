@@ -37,6 +37,14 @@ namespace TabasApi.Controller
             return bags;
         }
 
+        [HttpGet]
+        [Route("bagcar")]
+        public IEnumerable<Bagcar> GetBagcar()
+        {
+            var bagcars = repository.bagcars;
+            return bagcars;
+        }
+
         [HttpGet("employee/{id}")]
         public ActionResult<Trabajador> GetEmployee(string id)
         {
@@ -97,7 +105,7 @@ namespace TabasApi.Controller
             var match = repository.maletas.Where(p => p.numero == bag.numero).SingleOrDefault();
             if (match is not null)
             {
-                return bag;
+                return StatusCode(400);
             }
             repository.maletas.Add(bag);
             repository.UpdateDB();
@@ -119,6 +127,21 @@ namespace TabasApi.Controller
                 return NoContent();
             }
             bagcar.idMaletas.Add(bag);
+            repository.UpdateDB();
+            return NoContent();
+        }
+
+        [HttpPut]
+        [Route("cartoflight")]
+        public ActionResult AddBagToFlight(CarVueloDto ids)
+        {
+            var bagcar = repository.bagcars.Where(p => p.identificador == ids.idBagCar).SingleOrDefault();
+            if (bagcar is null)
+            {
+                return NotFound();
+            }
+            var index = repository.bagcars.FindIndex(p => p.identificador == ids.idBagCar);
+            repository.bagcars[index].id_vuelo = ids.idVuelo;
             repository.UpdateDB();
             return NoContent();
         }
