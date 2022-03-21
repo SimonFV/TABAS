@@ -27,6 +27,7 @@ namespace TabasApi.Repositories
         public string costo { get; set; }
         public string peso { get; set; }
         public string color { get; set; }
+        public string id_vuelo { get; set; }
     }
 
     public class Usuario
@@ -42,7 +43,7 @@ namespace TabasApi.Repositories
     {
         public string identificador { get; set; }
         public string id_vuelo { get; set; }
-        public List<string> idMaletas { get; set; }
+        public List<Guid> idMaletas { get; set; }
         public string sello_seguridad { get; set; }
         public string modelo { get; set; }
         public string marca { get; set; }
@@ -52,9 +53,8 @@ namespace TabasApi.Repositories
     {
         public string numero_vuelo { get; set; }
         public string id_avion { get; set; }
-        public string total_maletas { get; set; }
-        public string maletas_avion { get; set; }
-        public string rechazadas { get; set; }
+        public List<Guid> maletas_avion { get; set; }
+        public List<Guid> rechazadas { get; set; }
     }
 
     public class Avion

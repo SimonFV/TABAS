@@ -47,13 +47,14 @@ export class SignUpComponent implements OnInit {
     else {
       this.service.postRegister(this.createJSON()).subscribe(resp => {
         console.log(resp);
-        //this.router.navigate([this.myRouterLink]);
+        this.router.navigate([this.myRouterLink]);
       },
         (err) => {
           console.log(err);
+          this.alert('ID already registered', 'danger');
         });
     }
-    this.router.navigate([this.myRouterLink]);
+    return false;
   }
   alert(message: any, type: any) {
     const alertPlaceholder = document.getElementById('alertDiv')!
@@ -68,7 +69,6 @@ export class SignUpComponent implements OnInit {
     this.lastName = (document.getElementById("Last Name")! as HTMLInputElement).value;
     this.scndLastName = (document.getElementById("2° Last Name")! as HTMLInputElement).value;
     this.ID = (document.getElementById("ID")! as HTMLInputElement).value;
-    this.email = (document.getElementById("email")! as HTMLInputElement).value;
     this.pass = (document.getElementById("password")! as HTMLInputElement).value;
     if (this.name == "" || this.lastName == "" || this.scndLastName == "" || this.ID == "" || this.email == "" || this.pass == "") {
       complete = false;
@@ -85,12 +85,6 @@ export class SignUpComponent implements OnInit {
       "apellido_1": this.lastName,
       "apellido_2": this.scndLastName,
       "password": this.pass
-      /*
-      "LName": this.lastName,
-      "scndLastName": this.scndLastName,
-      
-      "email":this.email,*/
-
     };
     output = <JSON>obj
     console.log("OUTPUT \n");

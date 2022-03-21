@@ -1,6 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
@@ -12,6 +12,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { MobileAppComponent } from './mobile-app/mobile-app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TablasComponent } from './tablas/tablas.component';
+import { FlightsComponent } from './flights/flights.component';
 
 @NgModule({
   declarations: [
@@ -23,21 +24,23 @@ import { TablasComponent } from './tablas/tablas.component';
     BaggageComponent,
     SignUpComponent,
     MobileAppComponent,
-    TablasComponent
+    TablasComponent,
+    FlightsComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     HttpClientModule,
     RouterModule.forRoot([
-      {path: '', component: SignUpComponent},
-      {path: 'admin', component: AdminComponent},
-      {path: 'receptionist', component: ReceptionistComponent},
-      {path: 'signIn', component: SignInComponent},
-      {path: 'baggage', component: BaggageComponent},
-      {path: 'report',component:ReportsComponent},
-      {path:'mobileApp', component: MobileAppComponent},
-      {path: 'tablas', component: TablasComponent}
+      { path: '', component: SignUpComponent },
+      { path: 'admin', component: AdminComponent },
+      { path: 'receptionist', component: ReceptionistComponent },
+      { path: 'signIn', component: SignInComponent },
+      { path: 'baggage', component: BaggageComponent },
+      { path: 'report', component: ReportsComponent },
+      { path: 'mobileApp', component: MobileAppComponent },
+      { path: 'tablas', component: TablasComponent },
+      { path: 'flights', component: FlightsComponent }
     ]
     )
   ],

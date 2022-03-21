@@ -45,6 +45,7 @@ export class SignInComponent implements OnInit {
     },
       (err) => {
         console.log(err);
+        this.alert('Incorrect information', 'danger');
       });
 
   }

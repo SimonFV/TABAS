@@ -12,14 +12,19 @@ export class APIService {
     let header = new HttpHeaders().set('Type-contet', 'aplication/json');
     return this.http.get('https://localhost:5001/employee', { headers: header });
   }
-  getBaggage(){
+  getBaggage() {
     let header = new HttpHeaders().set('Type-contet', 'aplication/json');
     return this.http.get('https://localhost:5001/baggage', { headers: header });
   }
-  getBagCar(){
+  getBagCar() {
     let header = new HttpHeaders().set('Type-contet', 'aplication/json');
     return this.http.get('https://localhost:5001/bagcar', { headers: header });
   }
+  getFlights() {
+    let header = new HttpHeaders().set('Type-contet', 'aplication/json');
+    return this.http.get('https://localhost:5001/flights', { headers: header });
+  }
+
   postRegister(employee: JSON) {
     let header = new HttpHeaders().set('Type-contet', 'aplication/json');
     return this.http.post('https://localhost:5001/employee/register', employee, { headers: header });
@@ -33,18 +38,14 @@ export class APIService {
     let header = new HttpHeaders().set('Type-contet', 'aplication/json');
     return this.http.post('https://localhost:5001/employee/login', employee, { headers: header });
   }
-  postBaggage(bag:JSON){
+  postBaggage(bag: JSON) {
     let header = new HttpHeaders().set('Type-contet', 'aplication/json');
     return this.http.post('https://localhost:5001/baggage', bag, { headers: header });
   }
 
-  postAssignment(assignment:JSON){
+  postAssignment(assignment: JSON) {
     let header = new HttpHeaders().set('Type-contet', 'aplication/json');
     return this.http.put('https://localhost:5001/cartoflight', assignment, { headers: header });
-    
+
   }
-
-  
-
-
 }

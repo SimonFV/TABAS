@@ -13,5 +13,7 @@ namespace TabasApi.Dtos
         public string peso { get; set; }
         [Required]
         public string color { get; set; }
+        [Required]
+        public string idVuelo { get; set; }
     }
 }

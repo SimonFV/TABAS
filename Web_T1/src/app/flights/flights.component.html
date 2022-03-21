@@ -1,0 +1,25 @@
+<div class="col-auto p-5 text-center">
+    <table class="table table-hover  table-bordered align-middle caption-top">
+        <caption>List of Flights</caption>
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Number</th>
+                <th scope="col">Plane ID</th>
+                <th scope="col">Baggage</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let flight of data">
+            <tr>
+                <td>{{flight.numero_vuelo}}</td>
+                <td>{{flight.id_avion}}</td>
+                <td>
+        <tbody *ngFor="let bag of flight.maletas_avion">
+            <tr>
+                <td>{{bag}}</td>
+            </tr>
+        </tbody>
+        </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

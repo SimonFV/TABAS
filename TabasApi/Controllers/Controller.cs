@@ -12,7 +12,6 @@ namespace TabasApi.Controller
     [Route("[controller]")]
     public class Controller : ControllerBase
     {
-        // Path del archivo json\
         // Creacion del la base de datos
         private readonly IDataBase repository;
 
@@ -45,6 +44,14 @@ namespace TabasApi.Controller
             return bagcars;
         }
 
+        [HttpGet]
+        [Route("flights")]
+        public IEnumerable<Vuelo> GetFlights()
+        {
+            var flights = repository.vuelos;
+            return flights;
+        }
+
         [HttpGet("employee/{id}")]
         public ActionResult<Trabajador> GetEmployee(string id)
         {
@@ -74,7 +81,7 @@ namespace TabasApi.Controller
             var match = repository.trabajadores.Where(p => p.cedula == employee.cedula).SingleOrDefault();
             if (match is not null)
             {
-                return employee;
+                return StatusCode(400);
             }
 
             repository.trabajadores.Add(employee);
@@ -101,36 +108,25 @@ namespace TabasApi.Controller
         [Route("baggage")]
         public ActionResult<Maleta> AddBaggage(MaletaDto bag)
         {
+            var temp = repository.vuelos.Where(p => p.numero_vuelo == bag.idVuelo).SingleOrDefault();
+            if (temp is null)
+            {
+                return NotFound();
+            }
             Maleta newBag = new()
             {
                 numero = Guid.NewGuid(),
                 usuario_cedula = bag.usuario_cedula,
                 costo = bag.costo,
                 peso = bag.peso,
-                color = bag.color
+                color = bag.color,
+                id_vuelo = bag.idVuelo
             };
             repository.maletas.Add(newBag);
+            var indexFlight = repository.vuelos.FindIndex(p => p.numero_vuelo == bag.idVuelo);
+            repository.vuelos[indexFlight].maletas_avion.Add(newBag.numero);
             repository.UpdateDB();
             return CreatedAtAction(nameof(GetBaggage), new { number = newBag.numero }, bag);
-        }
-
-        [HttpPost]
-        [Route("bagtobagcar")]
-        public ActionResult AddBagToCar(string idBagcar, string idBag)
-        {
-            var bagcar = repository.bagcars.Where(p => p.identificador == idBagcar).SingleOrDefault();
-            if (bagcar is null)
-            {
-                return NotFound();
-            }
-            var bag = bagcar.idMaletas.Where(p => p == idBag).SingleOrDefault();
-            if (bagcar is not null)
-            {
-                return NoContent();
-            }
-            bagcar.idMaletas.Add(bag);
-            repository.UpdateDB();
-            return NoContent();
         }
 
         [HttpPut]
@@ -138,7 +134,8 @@ namespace TabasApi.Controller
         public ActionResult AddBagToFlight(CarVueloDto ids)
         {
             var bagcar = repository.bagcars.Where(p => p.identificador == ids.idBagCar).SingleOrDefault();
-            if (bagcar is null)
+            var flight = repository.vuelos.Where(p => p.numero_vuelo == ids.idVuelo).SingleOrDefault();
+            if (bagcar is null || flight is null)
             {
                 return NotFound();
             }
