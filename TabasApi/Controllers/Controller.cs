@@ -57,7 +57,7 @@ namespace TabasApi.Controller
         }
 
         [HttpGet("baggage/{number}")]
-        public ActionResult<Maleta> GetBaggage(string number)
+        public ActionResult<Maleta> GetBaggage(Guid number)
         {
             var bag = repository.maletas.Where(p => p.numero == number).SingleOrDefault();
             if (bag is null)
@@ -97,19 +97,21 @@ namespace TabasApi.Controller
             return NoContent();
         }
 
-        // color usuario peso costo vuelo
         [HttpPost]
         [Route("baggage")]
-        public ActionResult<Maleta> AddBaggage(Maleta bag)
+        public ActionResult<Maleta> AddBaggage(MaletaDto bag)
         {
-            var match = repository.maletas.Where(p => p.numero == bag.numero).SingleOrDefault();
-            if (match is not null)
+            Maleta newBag = new()
             {
-                return StatusCode(400);
-            }
-            repository.maletas.Add(bag);
+                numero = Guid.NewGuid(),
+                usuario_cedula = bag.usuario_cedula,
+                costo = bag.costo,
+                peso = bag.peso,
+                color = bag.color
+            };
+            repository.maletas.Add(newBag);
             repository.UpdateDB();
-            return CreatedAtAction(nameof(GetBaggage), new { number = bag.numero }, bag);
+            return CreatedAtAction(nameof(GetBaggage), new { number = newBag.numero }, bag);
         }
 
         [HttpPost]
@@ -145,43 +147,5 @@ namespace TabasApi.Controller
             repository.UpdateDB();
             return NoContent();
         }
-
-        /*
-        [HttpPut("{id}")]
-        public ActionResult UpdateItem(Int32 id, UpdateItemDto employeeDto)
-        {
-            var existingItem = repository.GetEmployee(id);
-
-            if (existingItem is null)
-            {
-                return NotFound();
-            }
-
-            Item updatedItem = existingItem with
-            {
-                Name = employeeDto.Name,
-                Price = employeeDto.Price
-            };
-
-            repository.UpdateItem(updatedItem);
-
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public ActionResult DeleteItem(Guid id)
-        {
-            var existingItem = repository.GetItem(id);
-
-            if (existingItem is null)
-            {
-                return NotFound();
-            }
-
-            repository.DeleteItem(id);
-
-            return NoContent();
-        }
-        */
     }
 }
